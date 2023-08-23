@@ -18,54 +18,54 @@
 ### Association
 
 - has_many :items
-- has_many :comments
 
 ## items テーブル
 
-| Column             | Type       | Options     |
-| ------             | ------     | ----------- |
-| item_name          | string     | null: false |
-| item_description   | text       | null: false |
-| category_id        | integer    | null: false |
-| item_condition_id  | integer    | null: false |
-| cost_id            | integer    | null: false |
-| shipping_area_id   | integer    | null: false |
-| shipping_time_id   | integer    | null: false |
-| price              | integer    | null: false |
-| user               | references | null: false |
+| Column             | Type       | Options                        |
+| ------             | ------     | -----------                    |
+| item_name          | string     | null: false                    |
+| item_description   | text       | null: false                    |
+| category_id        | integer    | null: false                    |
+| item_condition_id  | integer    | null: false                    |
+| cost_id            | integer    | null: false                    |
+| shipping_area_id   | integer    | null: false                    |
+| shipping_time_id   | integer    | null: false                    |
+| price              | integer    | null: false                    |
+| user               | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to : users 
-- has_many : comments
+- has_one : purchase_records
 
-## comments テーブル
+## purchase_records テーブル
 
 | Column    | Type       | Options                        |
 | ------    | ---------- | ------------------------------ |
-| comment   | text       | null: false                    |
-| user_id   | references | null: false, foreign_key: true |
-| item_id   | references | null: false, foreign_key: true |
+| user      | references | null: false, foreign_key: true |
+| item      | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :items
-- belongs_to :users
+- has_one : items
+- has_one : shipping_info
 
-## purchases テーブル
+## shipping_infos テーブル
 
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| postal             | string | null: false |
-| area               | string | null: false |
-| city               | string | null: false |
-| address            | string | null: false |
-| building_name      | string |             |
-| phone              | string | null: false |
+| Column             | Type       | Options                        |
+| ------------------ | ------     | -----------                    |
+| postal             | string     | null: false                    |
+| area               | string     | null: false                    |
+| city               | string     | null: false                    |
+| address            | string     | null: false                    |
+| building_name      | string     |                                |
+| phone              | string     | null: false                    |
+| purchase_record    | references | null: false, foreign_key: true |
+
 
 ### Association
 
-- belongs_to :items
+- has_one : purchase_record
 
 
 
