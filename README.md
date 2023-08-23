@@ -6,9 +6,8 @@
 | Column             | Type     | Options                       |
 | ------------------ | ------   | ------------------------------|
 | name               | string   | null: false                   |
-| email              | string   | null: false, foreign_key: true|
-| password           | string   | null: false                   |
-| re_password        | string   | null: false                   |
+| email              | string   | null: false, unique: true     |
+| encrypted_password | string   | null: false                   |
 | family_name        | string   | null: false                   |
 | first_name         | string   | null: false                   |
 | family_name_kana   | string   | null: false                   |
@@ -27,19 +26,18 @@
 | ------             | ------     | ----------- |
 | item_name          | string     | null: false |
 | item_description   | text       | null: false |
-| category           | references | null: false |
-| item_condition     | references | null: false |
-| cost               | references | null: false |
-| shipping_area      | references | null: false |
-| shipping_time      | references | null: false |
+| category_id        | integer    | null: false |
+| item_condition_id  | integer    | null: false |
+| cost_id            | integer    | null: false |
+| shipping_area_id   | integer    | null: false |
+| shipping_time_id   | integer    | null: false |
 | price              | integer    | null: false |
-| user_id            | references | null: false |
+| user               | references | null: false |
 
 ### Association
 
 - belongs_to : users 
-- has_one :users
-- has_many :comments
+- has_many : comments
 
 ## comments テーブル
 
@@ -58,9 +56,6 @@
 
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
-| card_no            | string | null: false |
-| expiration         | string | null: false |
-| security_code      | string | null: false |
 | postal             | string | null: false |
 | area               | string | null: false |
 | city               | string | null: false |
