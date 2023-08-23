@@ -25,7 +25,6 @@
 
 | Column             | Type       | Options     |
 | ------             | ------     | ----------- |
-| image              | string     | null: false | 　#写真の取り扱い？
 | item_name          | string     | null: false |
 | item_description   | text       | null: false |
 | category           | references | null: false |
