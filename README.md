@@ -5,7 +5,7 @@
 
 | Column             | Type     | Options                       |
 | ------------------ | ------   | ------------------------------|
-| name               | string   | null: false                   |
+| nickname           | string   | null: false                   |
 | email              | string   | null: false, unique: true     |
 | encrypted_password | string   | null: false                   |
 | family_name        | string   | null: false                   |
@@ -18,27 +18,28 @@
 ### Association
 
 - has_many :items
+- has_one : order
 
 ## items テーブル
 
 | Column             | Type       | Options                        |
 | ------             | ------     | -----------                    |
 | item_name          | string     | null: false                    |
-| item_description   | text       | null: false                    |
+| description        | text       | null: false                    |
 | category_id        | integer    | null: false                    |
-| item_condition_id  | integer    | null: false                    |
+| condition_id       | integer    | null: false                    |
 | cost_id            | integer    | null: false                    |
-| shipping_area_id   | integer    | null: false                    |
+| area_id            | integer    | null: false                    |
 | shipping_time_id   | integer    | null: false                    |
 | price              | integer    | null: false                    |
 | user               | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to : users 
-- has_one : purchase_records
+- belongs_to : user 
+- has_one : order
 
-## purchase_records テーブル
+## orders テーブル
 
 | Column    | Type       | Options                        |
 | ------    | ---------- | ------------------------------ |
@@ -47,25 +48,26 @@
 
 ### Association
 
-- has_one : items
-- has_one : shipping_info
+- belongs_to : item
+- belongs_to : order
+- belongs_to : user
 
-## shipping_infos テーブル
+## addresses テーブル
 
 | Column             | Type       | Options                        |
 | ------------------ | ------     | -----------                    |
 | postal             | string     | null: false                    |
-| area               | string     | null: false                    |
+| area_id            | integer    | null: false                    |
 | city               | string     | null: false                    |
 | address            | string     | null: false                    |
 | building_name      | string     |                                |
 | phone              | string     | null: false                    |
-| purchase_record    | references | null: false, foreign_key: true |
+| order              | references | null: false, foreign_key: true |
 
 
 ### Association
 
-- has_one : purchase_record
+- has_one : order
 
 
 
