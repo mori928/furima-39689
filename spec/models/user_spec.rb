@@ -47,12 +47,18 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
       end
-      # it 'passwordが129文字以上では登録できない' do
-      #   @user.password = Faker::Internet.password(min_length: 6, max_length: 129)
-      #   @user.password_confirmation = @user.password
-      #   @user.valid?
-      #   expect(@user.errors.full_messages).to include("Password is too long (maximum is 128 characters)")
-      # end
+      it 'passwordが数字のみでは登録できない' do
+        @user.password = '111111'
+        @user.password_confirmation = '111111'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password には英字と数字の両方を含めて設定してください")
+      end
+      it '全角文字を含むパスワードでは登録できない' do
+        @user.password = 'ａａa １１1'
+        @user.password_confirmation = 'ａａa １１1'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password には英字と数字の両方を含めて設定してください")
+      end
       it 'passwordが空では登録できない'do
         @user.password = ''
         @user.password_confirmation = @user.password
