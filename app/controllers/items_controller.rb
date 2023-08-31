@@ -7,15 +7,14 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    @shipping_times = ShippingTime.all 
   end
 
   def create
-    @item = item.new(item_params)
+    @item = Item.new(item_params)
     if @item.save
-      redirect_to '/'
+       redirect_to '/'
     else
-      render new_item_path, status: :unprocessable_entity
+      render _to new_item_path, status: :unprocessable_entity
     end
   end
 
