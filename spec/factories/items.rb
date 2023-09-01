@@ -1,12 +1,17 @@
 FactoryBot.define do
   factory :item do
-    item_name       { Faker::Internet.password(max_length: 40) } 
-    description     { Faker::Internet.password(max_length: 1000) }
-    price           { Faker::Number.within(range: 300..9999999) }  # 300〜9,999,999のランダムな価格
+    item_name        { Faker::Internet.password(max_length: 40) } 
+    description      { Faker::Internet.password(max_length: 1000) }
+    category_id      { Faker::Number.between(from: 1, to: 10) }
+    condition_id     { Faker::Number.between(from: 1, to: 7) }
+    cost_id          { Faker::Number.between(from: 1, to: 3) }
+    area_id          { Faker::Number.between(from: 1, to: 48) }
+    shipping_time_id { Faker::Number.between(from: 1, to: 4) }
+    price            { Faker::Number.within(range: 300..9999999) }  # 300〜9,999,999のランダムな価格
     # fee_percentage  { 10 }  # 販売手数料率（10%と仮定）
   
-    # after(:build) do |item|
-    #   item.fee = (item.price * item.fee_percentage / 100).floor  # 小数点以下を切り捨てて販売手数料を計算
-    # end
+    after(:build) do |item|
+      item.fee = (item.price * item.fee_percentage / 100).floor  # 小数点以下を切り捨てて販売手数料を計算
+    end
   end
 end
