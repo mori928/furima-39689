@@ -9,7 +9,7 @@ FactoryBot.define do
     price            { Faker::Number.within(range: 300..9999999) }  # 300〜9,999,999のランダムな価格
     item_name        { "商品名" }
     description      { "商品の説明文" }
- 
+    association :user 
 
     after(:build) do |message|
       message.image.attach(io: File.open('public/images/test_image.png'), filename: 'test_image.png')

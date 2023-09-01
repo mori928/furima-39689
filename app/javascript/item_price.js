@@ -1,8 +1,4 @@
 window.addEventListener('turbo:load', () => {
-  const priceInput = document.getElementById("price");
-  priceInput.addEventListener("input", () => {
-  const inputValue = priceInput.value;
-  console.log(inputValue);
   const addTaxDom = document.getElementById("add-tax-price");   //#販売手数料
   const ProfitDom = document.getElementById("profit");  //#販売利益
   // 入力した金額をもとに販売手数料を計算する処理

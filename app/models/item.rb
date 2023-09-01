@@ -2,7 +2,7 @@ class Item < ApplicationRecord
   # devise :database_authenticatable, :registerable,
   #        :recoverable, :rememberable, :validatable
 
-  # belongs_to :user 
+  belongs_to :user 
    # has_one :order    
   extend ActiveHash::Associations::ActiveRecordExtensions
   has_one_attached :image
