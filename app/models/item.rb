@@ -13,6 +13,7 @@ class Item < ApplicationRecord
   belongs_to :shipping_time
 
 
+  validates :image, presence: true
   validates :item_name, :description, presence: true
   validates :category_id, numericality: { other_than: 1 , message: "can't be blank"} 
   validates :condition_id, numericality: { other_than: 1 , message: "can't be blank"}
@@ -22,6 +23,9 @@ class Item < ApplicationRecord
   validates :price, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
   
   
+  def was_attached?
+    self.image.attached?
+  end
 
   
 end
