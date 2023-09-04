@@ -1,9 +1,9 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :update]
 
-  # def index
-  #   @items = Item.all
-  # end
+  def index
+    @items = Item.includes(:user).order("created_at DESC")
+  end
 
   def new
     @item = Item.new
@@ -17,6 +17,12 @@ class ItemsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+  # def show
+  #   @item = Comment.new
+  #   @comments = @prototype.comments.includes(:user)
+  #   @prototype = Prototype.find(params[:id])
+  # end
 
   # def update
   #   @item = Item.find(params[:id])
