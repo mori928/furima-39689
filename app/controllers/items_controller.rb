@@ -1,8 +1,8 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_item, only: [:edit, :show, :update, :ensure_correct_user]
   before_action :ensure_correct_user, only: [:destroy, :edit]
-  before_action :set_item, only: [:edit, :show, :update]
-  
+
   def index
     @items = Item.includes(:user).order("created_at DESC")
   end
@@ -41,7 +41,6 @@ class ItemsController < ApplicationController
   end
 
   def ensure_correct_user
-    @item = Item.find(params[:id])
     unless current_user == @item.user
       redirect_to root_path, alert: "You don't have permission to perform this action."
     end
