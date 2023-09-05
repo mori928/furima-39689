@@ -24,14 +24,12 @@
        </span> 
        <span class= "item-postage"> 
        <%= @item.cost.name %></span> 
-       <%# <span><%= "配送料負担" %></span> 
       </div> 
 
     <%# ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合の処理 %>
     <% if user_signed_in? %> 
       <% if current_user.id == @item.user_id %>
-        <%= link_to "商品の編集", "#", method: :get, class: "item-red-btn" %>  
-        <%# edit_item_path(@item)  編集機能の際に“＃”に導入する %>
+        <%= link_to "商品の編集", edit_item_path(@item), method: :get, class: "item-red-btn" %>  
         <p class="or-text">or</p>
         <%= link_to "削除", "#", class:"item-destroy" %>
         <%# item_path(@item), method: :delete, 削除機能の際に上記＃に導入する%> 

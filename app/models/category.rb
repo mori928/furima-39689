@@ -17,3 +17,7 @@ class Category < ActiveHash::Base
   has_many :items
 
   end
+
+  def item_name
+    self.name # もしくは適切なカラム名に変更
+  end
