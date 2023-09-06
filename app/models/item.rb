@@ -8,7 +8,8 @@ class Item < ApplicationRecord
   end
 
   belongs_to :user 
-   # has_one :order    
+  has_one :order   
+   
   extend ActiveHash::Associations::ActiveRecordExtensions
   has_one_attached :image
   belongs_to :area

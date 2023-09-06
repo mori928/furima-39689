@@ -1,5 +1,5 @@
 <%= render "shared/second-header"%>
-
+<%= render 'error_messages', model: @order_address %>
 <div class='transaction-contents'>
   <div class='transaction-main'>
     <h1 class='transaction-title-text'>
@@ -119,7 +119,7 @@
     </div>
     <%# /配送先の入力 %>
     <div class='buy-btn'>
-      <%= f.submit "購入" ,class:"buy-red-btn", id:"button" %>
+      <%= link_to "購入", root_path, class: "buy-red-btn", id: "button" %>
     </div>
     <% end %>
   </div>
