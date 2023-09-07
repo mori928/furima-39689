@@ -6,6 +6,7 @@ devise :database_authenticatable, :registerable,
 
        has_many :items      
        has_many :orders 
+       has_one :card, dependent: :destroy
 
        validates_format_of :password, with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: 'には英字と数字の両方を含めて設定してください' 
        validates_format_of :family_name, with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'は全角文字（漢字・ひらがな・カタカナ）で入力してください'
