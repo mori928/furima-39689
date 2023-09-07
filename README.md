@@ -43,14 +43,14 @@
 
 | Column    | Type       | Options                        |
 | ------    | ---------- | ------------------------------ |
-| user      | references | null: false, foreign_key: true |
-| item      | references | null: false, foreign_key: true |
+| user_id   | references | null: false, foreign_key: true |
+| item_id   | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to : item
-- has_one : address
-- belongs_to : user
+- belongs_to :item
+- has_one :address
+- belongs_to :user
 
 ## addresses テーブル
 
@@ -62,7 +62,7 @@
 | address            | string     | null: false                    |
 | building_name      | string     |                                |
 | phone              | string     | null: false                    |
-| order              | references | null: false, foreign_key: true |
+| order_id           | references | null: false, foreign_key: true |
 
 
 ### Association
