@@ -6,11 +6,10 @@ class OrdersController < ApplicationController
   def index
     @order_address = OrderAddress.new
     @item = Item.find(params[:item_id])
-    if current_user == @item.user || !@item.order.nil?
-      redirect_to root_path
+    if current_user.nil? || current_user == @item.user || !@item.order.nil?
+      redirect_to user_session_path
     end
   end
-  
 
   def create
     @order_address = OrderAddress.new(order_params)
@@ -39,8 +38,8 @@ class OrdersController < ApplicationController
     )
   end
 
-  def set_item
-    @item = Item.find(params[:id])
-  end
+  # def set_item
+  #   @item = Item.find(params[:id])
+  # end
 
 end
