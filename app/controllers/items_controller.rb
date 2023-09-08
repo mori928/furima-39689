@@ -1,8 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_item, only: [:edit, :show, :update, :destroy]
-  before_action :ensure_correct_user, only: [:destroy, :edit]
-
+  
   def index
     @items = Item.includes(:user).order("created_at DESC")
   end
@@ -30,10 +29,15 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if current_user.nil? || current_user == @item.user || !@item.order.nil?
+    if current_user.nil?
+      redirect_to user_session_path
+    elsif current_user != @item.user || !@item.order.nil?
       redirect_to root_path
     end
   end
+
+
+    # if current_user.nil? || current_user == @item.user || !@item.order.nil?
 
   def update
     if @item.update(item_params)
