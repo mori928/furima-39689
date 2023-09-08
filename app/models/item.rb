@@ -24,14 +24,6 @@ class Item < ApplicationRecord
   validates :price, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
 
 
-  # sold_out 属性を許可
-  attr_accessor :sold_out
-  def sold_out?
-    # ここに売り切れているかどうかのロジックを追加
-    # 例: 在庫が0の場合に true を返す
-    self.stock_quantity == 0
-  end
-
 end
 
 

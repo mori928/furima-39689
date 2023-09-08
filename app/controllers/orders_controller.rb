@@ -1,10 +1,18 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, except: :index
+  before_action :ensure_correct_user, only: [:destroy, :edit]
   # before_action :non_purchased_item, only: [:index, :create]
 
   def index
     @order_address = OrderAddress.new
     @item = Item.find(params[:item_id])
+    if current_user == @item.user
+      if !@item.order.nil?
+        redirect_to root_path
+      else
+        render :index
+      end
+    end
   end
 
   def create
@@ -33,4 +41,9 @@ class OrdersController < ApplicationController
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
   end
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
 end

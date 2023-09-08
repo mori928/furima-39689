@@ -16,12 +16,13 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to '/'
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity, object: @item
     end
   end
 
   def show
   end
+
 
   def destroy
     @item.destroy
@@ -29,13 +30,14 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    redirect_to root_path unless current_user.id == @item.user_id
   end
 
   def update
     if @item.update(item_params)
       redirect_to item_path(@item) 
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity, object: @item
     end
   end
 
