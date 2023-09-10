@@ -75,7 +75,7 @@ gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
 	
 gem 'active_hash'
-gem 'factory_bot_rails'
+# gem 'factory_bot_rails'
 gem 'pry-rails'
 gem 'payjp'
 gem 'gon'
